@@ -43,7 +43,7 @@ const UpdateProfile = () => {
                                                 updateRef.current.click()
                                             }
                                         }}
-                                        src={renderProfile(formik.values.profileImage)} width="70" height="70"
+                                        src={renderProfile(formik.values.profileImage )} width="70" height="70"
                                          alt="Jessica Potter" />
                                     <input
                                         onChange={(e) =>{

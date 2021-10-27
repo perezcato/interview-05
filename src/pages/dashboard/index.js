@@ -26,18 +26,24 @@ const Dashboard = () => {
         router.push('/update_profile');
     }
 
+    const renderValue = (value, optional) => {
+        return appContext.appData
+        && appContext.appData.userData && appContext.appData.userData[value] ?
+            appContext.appData.userData[value] : optional
+    }
+
     return (
         <div className="flexbox">
             <div className="center">
                 <div className="profile">
                     <div className="image">
-                        <img src={renderProfile(appContext.appData.userData.profileImage)} width="70" height="70"
+                        <img src={renderProfile(renderValue('profileImage', null))} width="70" height="70"
                              alt="Jessica Potter" />
                     </div>
 
-                    <div className="name">{appContext.appData.userData.name}</div>
-                    <div className="job">{appContext.appData.userData.email}</div>
-                    <div className="job">({appContext.appData.userData.phoneNumber})</div>
+                    <div className="name">{renderValue('name', '')}</div>
+                    <div className="job">{renderValue('email', '') }</div>
+                    <div className="job">({renderValue('phoneNumber', '')})</div>
 
                     <div className="actions">
                         <button className="btn" onClick={updateProfile}>Update</button>
