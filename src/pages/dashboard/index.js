@@ -19,7 +19,7 @@ const Dashboard = () => {
     }
 
     const renderProfile = (value) => {
-        return value ? URL.createObjectURL(value): 'http://100dayscss.com/codepen/jessica-potter.jpg'
+        return value ?? 'http://100dayscss.com/codepen/jessica-potter.jpg'
     }
 
     const updateProfile = () => {

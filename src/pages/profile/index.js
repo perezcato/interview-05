@@ -7,9 +7,6 @@ const UpdateProfile = () => {
     const appContext  = React.useContext(AppContext);
     const router = useHistory();
     const updateRef = React.useRef();
-    const renderProfile = (imageObject) => {
-        return imageObject ? URL.createObjectURL(imageObject): 'http://100dayscss.com/codepen/jessica-potter.jpg'
-    }
 
     return (
         <Formik
@@ -18,7 +15,7 @@ const UpdateProfile = () => {
                 email: appContext.appData.userData.email,
                 password: appContext.appData.userData.password,
                 phoneNumber: appContext.appData.userData.phoneNumber,
-                profileImage: appContext.appData.userData.profileImage ?? null
+                profileImage: appContext.appData.userData.profileImage ?? 'http://100dayscss.com/codepen/jessica-potter.jpg'
             }}
 
             onSubmit={(values) => {
@@ -43,12 +40,11 @@ const UpdateProfile = () => {
                                                 updateRef.current.click()
                                             }
                                         }}
-                                        src={renderProfile(formik.values.profileImage )} width="70" height="70"
+                                        src={formik.values.profileImage } width="70" height="70"
                                          alt="Jessica Potter" />
                                     <input
                                         onChange={(e) =>{
-                                            console.log(e.target.files[0])
-                                            formik.setFieldValue('profileImage', e.target.files[0])
+                                            formik.setFieldValue('profileImage', URL.createObjectURL(e.target.files[0]))
                                         }}
                                         ref={updateRef}
                                         style={{display: 'none'}}
